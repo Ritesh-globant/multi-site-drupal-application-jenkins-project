@@ -2,7 +2,7 @@ node {
    
 withCredentials([sshUserPrivateKey(credentialsId: 'Remote-Server-Access-Creds', keyFileVariable: 'PASSWORDLESS', passphraseVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 	
-properties([parameters([choice(choices: ['site1', 'site2', 'site3'], description: 'Select site for building the application', name: 'sitename'), gitParameter(branch: '', branchFilter: '.*', defaultValue: '', description: '', name: 'BRANCH', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', useRepository: 'git@github.com:ritesh-globant/multi-site-drupal-application-jenkins-project.git', type: 'PT_BRANCH'), choice(choices: ['UAT-192.168.1.6', 'Dev-192.168.1.7'], description: 'Select the server for deploying the application', name: 'servers')])])
+properties([parameters([choice(choices: ['site1', 'site2', 'site3'], description: 'Select site for building the application', name: 'sitename'), gitParameter(branch: '', branchFilter: '.*', defaultValue: 'origin/master', description: '', name: 'BRANCH', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', useRepository: 'git@github.com:ritesh-globant/multi-site-drupal-application-jenkins-project.git', type: 'PT_BRANCH'), choice(choices: ['UAT-192.168.1.6', 'Dev-192.168.1.7'], description: 'Select the server for deploying the application', name: 'servers')])])
 	
 site = params.sites.trim()
 String[] server = params.servers.trim().split("-");
